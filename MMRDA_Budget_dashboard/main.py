@@ -233,5 +233,4 @@ def adb_ndb_dashboard():
                            loan_cards_html=loan_cards_html,
                            repayment_chart_html = repayment_chart_html)
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
