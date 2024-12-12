@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard1.css') }}">
+
+</head>
+<body>
+    <header>
+        <!-- Logo Section -->
+        <div id="company-logo">
+            <img src="static/mmrda_logo.png" alt="Company Logo">
+        </div>
+
+        <!-- Tab Navigation Buttons -->
+        <div class="tabs">
+            <button class="tab-button" onclick="location.href='/level1'">Level 1</button>
+            <button class="tab-button" onclick="location.href='/level2'">Level 2</button>
+            <button class="tab-button" onclick="location.href='/level3'">Level 3</button>
+        </div>
+    </header>
+
+    <br>
+     <div class = "1">
+        {{ receipt_plot_html | safe }}
+    </div>
+    <br>
+
+    <div class = "2">
+        {{ expense_plot_html | safe }}
+    </div>
+
+
+
+</body>
+</html>
+
+
+<div class="metrics-container">
+    <!-- Revenue Group -->
+        <div class="revenue-group">
+            <h3>Receipts Metrics</h3>
+            <div class="card-container">
+                <div id="revenue-card">
+                    {{ total_revenue_card_html | safe }}
+                </div>
+                <div id="proportion-revenue-card">
+                    {{ proportion_revenue_card_html | safe }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Expense Group -->
+        <div class="expense-group">
+            <h3>Expenditure Metrics</h3>
+            <div class="card-container">
+                <div id="expense-card">
+                    {{ total_expense_card_html | safe }}
+                </div>
+                <div id="proportion-expense-card">
+                    {{ proportion_expense_card_html | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class = revnue-donut-holder>
+        {{ revenue_donut_chart_html|safe}}
+    </div>
+
+    <div class = expense-donut-holder>
+        {{ expense_donut_chart_html|safe}}
+    </div>
+
+

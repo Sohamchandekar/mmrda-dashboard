@@ -1,0 +1,239 @@
+body {
+
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background: linear-gradient(to right, #e0f7fa, #80deea); Gradient background */
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+header {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between logo and tab buttons */
+    align-items: center; /* Center items vertically */
+    background: #7F7FD5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    padding: 5px 10px; /* Add some horizontal padding */
+}
+
+#company-logo img {
+    max-width: 150px; /* Adjust as needed */
+}
+
+.tabs {
+    margin: 0; /* Remove margin to align with the header */
+}
+
+.tab-button {
+    margin: 0 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab-button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/********************************************************************************************************/
+
+/* Button Container Styling */
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: ffffff;
+    padding: 9px 0;
+    box-shadow: 0 2px 5px rgba(12, 12, 120, 0.3);
+}
+
+.button-container .button {
+    background-color: transparent; /* Transparent background */
+    color: darkblue; /* Dark blue font color */
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 800; /* Bold text */
+    border-radius: 5px;
+    transition: all 0.3s; /* Smooth transition for hover effects */
+}
+
+.button-container .button:hover {
+    background-color: rgba(0, 0, 255, 0.1); /* Light blue transparent background on hover */
+    color: darkblue; /* Keep the font color dark blue */
+}
+
+
+
+
+/* Table Styling */
+.project-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-family: 'Roboto', Arial, sans-serif; /* Modern font for readability */
+    font-size: 14px; /* Standard size for table text */
+    color: #333; /* Slightly darker text for readability */
+    border-radius: 10px;
+}
+
+/* Header Row Styling */
+.project-table thead th {
+    background-color: #1F509A; /* Fresh green header for distinction */
+    color: white; /* Contrasting text color */
+    text-transform: uppercase; /* Capitalized header text */
+    padding: 10px 8px;
+}
+
+/* Body Row Styling */
+.project-table tbody tr:nth-child(odd) {
+    background-color: #EEEEEE; /* Light gray for odd rows */
+}
+
+.project-table tbody tr:nth-child(even) {
+    background-color: #F4F6FF; /* White for even rows */
+}
+
+/* Hover Effect */
+.project-table tbody tr:hover {
+    background-color: #e8f5e9; /* Light green for hover effect */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Cell Styling */
+.project-table th, .project-table td {
+    padding: 12px 10px;
+    text-align: left;
+    vertical-align: middle;
+    border: 1.5px solid #ddd;
+}
+
+/* First Column: Serial Numbers */
+.project-table tbody td:first-child {
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Font Styling */
+.project-table th {
+    font-family: 'Roboto Slab', serif; /* Elegant font for headers */
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.project-table td {
+    font-family: 'Roboto', Arial, sans-serif; /* Clean sans-serif for content */
+    font-size: 14px;
+}
+/* Progress Bar Styling */
+.progress-bar-container {
+    position: relative;
+    display: flex;
+    height: 28px;
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-in-out;
+}
+
+.progress-bar {
+    display: inline-block;
+    height: 100%;
+    transition: width 0.6s ease-in-out;
+}
+
+.progress-bar.achieved {
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.progress-bar.remaining {
+    background-color: #c8e6c9;
+}
+
+.progress-text {
+    position: relative;
+    width: 80%;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 25px;
+}
+
+/* Progress Values */
+.progress-values {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+
+
+
+/* Bullet list for engineers */
+.engineer-list {
+    list-style-type: disc; /* Bullet points */
+    margin: 0;
+    padding-left: 20px;
+}
+
+.engineer-item {
+    cursor: pointer; /* Pointer cursor for interactivity */
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.engineer-item:hover {
+    color: #4caf50; /* Highlight color on hover */
+    text-decoration: underline;
+}
+
+/* Target Marker Style */
+.progress-bar.target {
+    background-color: #ff9800; /* Orange for target */
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+
+
+
+#chart-container {
+    text-align: center;
+    margin: 20px;
+}
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}

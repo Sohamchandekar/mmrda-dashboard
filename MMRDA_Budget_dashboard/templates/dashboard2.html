@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard2.css') }}">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div id="company-logo">
+            <img src="{{ url_for('static', filename='mmrda_logo.png') }}" alt="Company Logo">
+        </div>
+
+<!--        <div id="dashboard-title">-->
+<!--            <h1>BUDGET DASHBOARD</h1>-->
+<!--        </div>-->
+
+        <div class="tabs">
+            <button class="tab-button" onclick="location.href='/level1'">Budget Overview</button>
+            <button class="tab-button" onclick="location.href='/level2'">Expense Glance</button>
+            <button class="tab-button" onclick="location.href='/level3'">Loan Overview</button>
+        </div>
+    </header>
+
+    <!-- Button Section -->
+    <div class="button-container">
+        <button class="button" onclick="location.href='/engineering'">ENGINEERING DIVISION</button>
+        <button class="button" onclick="location.href='/town'">TOWN & COUNTRY PLANNING</button>
+        <button class="button" onclick="location.href='/transportCommunication'">TRANSPORT & COMMUNICATION</button>
+        <button class="button" onclick="location.href='/metroProjects'">METRO PROJECTS</button>
+        <button class="button" onclick="location.href='/monoPiu'">MONO PIU</button>
+    </div>
+
+    <!-- Main Content Section -->
+    <div id="main-content">
+        <!-- Insert the generated table HTML here -->
+        {{ table_html|safe }}
+    </div>
+
+    <script>
+        // Filter rows by engineer name
+        function filterByEngineer(element) {
+            const engineerName = element.innerText.toLowerCase();
+            const rows = document.querySelectorAll('.project-table tbody tr');
+
+            // Check if the filter is already applied
+            const isFiltered = rows[0].classList.contains('filtered');
+
+            rows.forEach(row => {
+                const engineers = row.getAttribute('data-engineers').split(',');
+                if (isFiltered || engineers.includes(engineerName)) {
+                    row.style.display = ''; // Show row
+                    row.classList.remove('filtered');
+                } else {
+                    row.style.display = 'none'; // Hide row
+                    row.classList.add('filtered');
+                }
+            });
+
+            // Reset filter if already applied
+            if (isFiltered) {
+                rows.forEach(row => row.style.display = '');
+            }
+        }
+
+
+    </script>
+
+
+</body>
+</html>

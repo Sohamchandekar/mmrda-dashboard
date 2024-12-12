@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard3.css') }}">
+</head>
+
+<body>
+    <header>
+        <!-- Logo Section -->
+        <div id="company-logo">
+            <img src="static/mmrda_logo.png" alt="Company Logo">
+        </div>
+
+        <!-- Tab Navigation Buttons -->
+        <div class="tabs">
+            <button class="tab-button" onclick="location.href='/level1'">Budget Overview</button>
+            <button class="tab-button" onclick="location.href='/level2'">Expense Glance</button>
+            <button class="tab-button" onclick="location.href='/level3'">Loan Overview</button>
+        </div>
+    </header>
+
+    <!-- Main Content with 9 Buttons -->
+    <div class="circle-layout">
+
+        <div class="button-grid">
+            <button class="grid-button" onclick="location.href='/page1'">ADB / NDB</button>
+            <button class="grid-button" onclick="location.href='/page2'">REC</button>
+            <button class="grid-button" onclick="location.href='/page3'">PFC</button>
+            <button class="grid-button" onclick="location.href='/page4'">BoM</button>
+            <button class="grid-button" onclick="location.href='/page5'">KFW</button>
+            <button class="grid-button" onclick="location.href='/page6'">AIIB / OFID</button>
+            <button class="grid-button" onclick="location.href='/page7'">GoM</button>
+            <button class="grid-button" onclick="location.href='/page8'">JICA</button>
+            <button class="grid-button" onclick="location.href='/page9'">SBI</button>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard1.css') }}">
+
+</head>
+<body>
+    <header>
+        <!-- Logo Section -->
+        <div id="company-logo">
+            <img src="static/mmrda_logo.png" alt="Company Logo">
+        </div>
+
+        <!-- Tab Navigation Buttons -->
+        <div class="tabs">
+            <button class="tab-button" onclick="location.href='/level1'">Budget Overview</button>
+            <button class="tab-button" onclick="location.href='/level2'">Expense Glance</button>
+            <button class="tab-button" onclick="location.href='/level3'">Loan Overview</button>
+        </div>
+    </header>
+
+
+    <div class="sections">
+        <!-- Section 1: Cards -->
+        <div class="section section-1">
+            <div class="card-holder">
+                <div id="revenue-card">
+                    {{ total_revenue_card_html | safe }}
+                </div>
+
+                <div id="proportion-revenue-card">
+                    {{ proportion_revenue_card_html | safe }}
+                </div>
+
+                <div id="expense-card">
+                    {{ total_expense_card_html | safe }}
+                </div>
+
+                <div id="proportion-expense-card">
+                    {{ proportion_expense_card_html | safe }}
+                </div>
+
+                <div id="time-card">
+                    {{ date_card_html | safe }}
+                </div>
+            </div>
+        </div>
+
+        <div class="section section-2">
+
+
+            <div class="gauge-gauge-container">
+                <div id="revenue-gauge-container">
+                    <div class="revenue-gauge">
+                        {{ revenue_gauge_chart_html | safe }}
+                    </div>
+                </div>
+
+                <div id = 'expense-gauge-container'>
+                    <div class="expense-gauge">
+                        {{ expense_gauge_chart_html | safe }}
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="section-2b">
+
+                <div class="card-holder-1">
+                    <h4> Crucial Metrics</h4>
+                    <div id="cashinhand-card">
+                        {{ cash_inhand_card_html | safe }}
+                    </div>
+
+                     <div id="position-card">
+                        {{ position_card_html | safe }}
+                    </div>
+
+                    <div id="utility-card">
+                        {{ utility_card_html | safe }}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="section section-3">
+
+
+
+            <div class="donut-donut-container">
+                <div id="revenue-dount-container">
+                    <div class="revenue-donut">
+                        {{ revenue_distribution_donut_chart_html | safe }}
+                    </div>
+                </div>
+
+                <div id = "expense-donut-container">
+                    <div class="expense-donut">
+                        {{ expense_distribution_donut_chart_html | safe }}
+                    </div>
+                </div>
+            </div>
+
+            <div class = "section-3b">
+                <div class = "information-holder">
+
+                    <p>placeholder</p>
+                </div>
+
+
+            </div>
+
+
+            <!-- Add your elements for the expenditure section here -->
+        </div>
+
+        <div class="section section-4">
+<!--            <div id = 'bar-chart-container'>-->
+<!--&lt;!&ndash;                <div class = 'bar-chart'>&ndash;&gt;-->
+<!--&lt;!&ndash;                    {{ growth_bar_chart_chart_html | safe }}&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
+        </div>
+
+    </div>
+
+    <footer id="page-footer">
+        <p>Powered by Envision Next LLP © </p>
+    </footer>
+
+
+
+</body>
+
+
+
+
+</html>

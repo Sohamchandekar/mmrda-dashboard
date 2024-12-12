@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard3.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h2 class="text-center mt-3">ADB / NDB Loan Overview</h2>
+    </header>
+
+    <!-- Render the loan cards -->
+    <div class="container mt-4">
+        {{ loan_cards_html | safe }}
+    </div>
+    <br><br>
+
+    <div class="container">
+        {{ repayment_chart_html | safe }}
+    </div>
+
+    <footer class="text-center mt-4">
+        <button class="btn btn-primary" onclick="location.href='/level3'">Back to Dashboard</button>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,416 @@
+body {
+
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background: linear-gradient(to right, #e0f7fa, #80deea); Gradient background */
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+header {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space between logo and tab buttons */
+    align-items: center; /* Center items vertically */
+    background: #7F7FD5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    padding: 5px 10px; /* Add some horizontal padding */
+}
+
+#company-logo img {
+    max-width: 150px; /* Adjust as needed */
+}
+
+.tabs {
+    margin: 0; /* Remove margin to align with the header */
+}
+
+.tab-button {
+    margin: 0 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab-button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/********************************************************************************************************/
+
+/* 1. Style for the sections */
+.sections {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange sections vertically */
+    height: 100vh; /* Full height of the viewport */
+}
+
+/* 2. Style for each section */
+.section {
+    flex: 0 0 auto; /* Allow sections to fit their content */
+    padding: 10px; /* Add some padding */
+}
+
+/* 3. Style for Section 1 to arrange cards in a row */
+.section-1 {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center cards vertically */
+    width: 100%; /* Full width of the parent */
+    padding: 20px 0; /* Add vertical padding for spacing */
+    box-sizing: border-box;
+}
+
+/* 4. Card holder to arrange cards in a row */
+.card-holder {
+    display: flex; /* Use flexbox for layout */
+    flex-direction: row; /* Arrange cards in a row */
+    gap: 40px; /* Space between cards */
+    width: 100%; /* Full width of section-1 */
+    max-width: 1800px; /* Limit maximum width for better scaling */
+    padding: 0 20px; /* Horizontal padding */
+    box-sizing: border-box;
+}
+
+/* 5. Ensure cards have a fixed width */
+#revenue-card,
+#proportion-revenue-card,
+#expense-card,
+#proportion-expense-card {
+    flex: 1; /* Allow cards to grow equally */
+    min-width: 200px; /* Minimum width for cards */
+    max-width: 250px; /* Maximum width for cards */
+
+}
+
+/********************************************************************************************************/
+/* Section 2 Container */
+.section-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start; /* Aligns all child elements to the top */
+    width: 95%;
+    max-width: 1800px;
+    margin: 5px auto;
+    gap: 20px; /* Space between card holder and gauges */
+    box-sizing: border-box;
+}
+
+
+/* Card Holder for Crucial Metrics */
+.card-holder-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    gap: 15px;
+    max-width: 400px; /* Set a max-width to prevent overflow */
+    height: 100%; /* Full height of section-2 */
+    border: 1px solid rgba(225, 225, 255, 0.3);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.8); /* White background with transparency */
+}
+
+/* Style for the heading */
+.card-holder-1 h4 {
+    text-align: center; /* Center text inside the div */
+    color: #000; /* Optional: Ensure heading text is visible against the background */
+}
+
+.section-2 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%; /* Use full width */
+    max-width: 100%; /* Remove any max-width limit */
+    margin: 2; /* Remove any margin */
+    padding: 2; /* Remove any padding */
+    gap: 10px;
+}
+
+/* Gauge Gauge Container */
+.gauge-gauge-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex: 2; /* Takes more space for gauges */
+    height: 100%;
+    align-items: flex-start;
+}
+
+/* Revenue and Expense Gauge container */
+#revenue-gauge-container,
+#expense-gauge-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Gauge Styling */
+.revenue-gauge,
+.expense-gauge {
+    width: 100%; /* Make gauges responsive */
+    max-width: 550px;
+    height: 430px; /* Consistent height */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover Effect for Gauges */
+.revenue-gauge:hover,
+.expense-gauge:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effect for Cards */
+#utility-card:hover,
+#position-card:hover,
+#cashinhand-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/********************************************************************************************************/
+/* Main container for gauge, donut, and cards */
+.section-3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start; /* Aligns all child elements to the top */
+    width: 95%;
+    max-width: 1800px;
+    margin: 5px auto;
+    gap: 20px; /* Space between card holder and gauges */
+    box-sizing: border-box;
+}
+
+/* Card Holder for Crucial Metrics */
+.information-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /*flex: 1;  Allows it to take space proportionally */
+    max-width: 400px; /* Set a max-width to prevent overflow */
+    height: 100%; /* Full height of section-2 */
+    border: 1px solid rgba(225, 225,255, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.section-3 {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%; /* Use full width */
+    max-width: 100%; /* Remove any max-width limit */
+    margin: 2; /* Remove any margin */
+    padding: 2; /* Remove any padding */
+    gap: 10px;
+}
+
+/* Container for Gauge and Donut */
+.donut-donut-container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; /* Reduced gap between gauge and donut */
+    flex: 2;
+    align-items: center;
+}
+/* Revenue Donut container */
+#revenue-dount-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start; /* Align donut to the left */
+}
+
+/* Revenue Donut styling */
+.revenue-donut {
+    width: 550px; /* Slightly reduced width */
+    height: 410px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect for Gauge */
+.revenue-donut:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Revenue Donut container */
+#expense-dount-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start; /* Align donut to the left */
+}
+
+/* Revenue Donut styling */
+.expense-donut {
+    width: 550px; /* Slightly reduced width */
+    height: 410px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect for Donut */
+.expense-donut:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Cards section */
+.section-3b {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Adjusted gap between stacked cards */
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+
+
+/* Hover effect for cards */
+#utility-card:hover,
+#position-card:hover,
+#cashinhand-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/********************************************************************************************************/
+
+
+.custom-card {
+    border-radius: 10px; /* Rounded corners */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for hover effect */
+    /*  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); Subtle shadow for depth */
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    width: 250px; /* Fixed width for the card */
+    height: 100px; /* Fixed height for the card */
+    display: flex; /* Use flexbox to center content */
+    flex-direction: column; /* Arrange children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.card-body {
+    padding: 20px; /* More padding for better spacing */
+    text-align: center; /* Center text */
+}
+
+.card-title {
+    font-size: 14px; /* Font size for the title */
+    font-weight: bold; /* Bold text for emphasis */
+    color: #22177A; /* White text color */
+}
+
+.card-value-text {
+    font-size: 14px; /* Font size for the value */
+    font-weight: bold; /* Bold text for emphasis */
+    margin-top: 8px; /* Space above the value */
+}
+
+/* Additional styling for background color */
+.bg-info {
+    background-image: linear-gradient(to top, #F5F7F8 0%, #eef1f5 100%);
+}
+
+
+
+
+/********************************************************************************************************/
+/* Section 4 Container */
+.section-4 {
+    display: flex;
+    justify-content: left; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%;
+    height: auto; /* Adjust height based on content */
+    padding: 20px 0; /* Optional: Add vertical padding */
+    box-sizing: border-box;
+}
+
+
+/* Bar Chart Styling */
+#bar-chart-container {
+    width: 1000px; /* Fixed width for the chart */
+    height: 480px; /* Fixed height for the chart */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    padding: 0;
+    margin: 1 auto;  Center within the container */
+    box-sizing: border-box;
+    display: block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover Effect */
+#bar-chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+#page-footer {
+    background-color: #f8f9fa; /* Optional: adjust for visibility */
+    color: #A6AEBF; /* Text color */
+    text-align: right; /* Align text to the left */
+    padding: 10px 20px; /* Add padding for spacing */
+    font-size: 13px; /* Adjust the font size */
+    box-sizing: border-box; /* Ensure padding is included in the width/height */
+
+    /* Positioning for sticking to bottom after scroll */
+    position: relative; /* Relative to the content */
+    clear: both; /* Clears any floated elements above */
+    width: 100%; /* Full width of the page */
+}
+
+/* Body and html styling for page height */
+body, html {
+    min-height: 100%; /* Ensure the page takes up at least 100% of the viewport */
+    display: flex;
+    flex-direction: column;
+    margin: 0; /* Remove any default margin */
+}
+
+/* Container for sections */
+.sections {
+    flex: 1; /* Push the footer to the bottom when content is shorter */
+}
