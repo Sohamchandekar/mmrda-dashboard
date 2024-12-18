@@ -37,7 +37,7 @@ def excel_processing_to_dataframe(receipts, expenditure):
         # Load receipt data
         if receipts.endswith(('.xls', '.xlsx')):
             receipt_data = pd.read_excel(receipts)
-            receipt_backdata = pd.read_excel(receipts, sheet_name=3)
+            receipt_backdata = pd.read_excel(receipts)
         elif receipts.endswith('.csv'):
             receipt_data = pd.read_csv(receipts)
             receipt_backdata = None  # CSV files do not have multiple sheets
@@ -45,7 +45,7 @@ def excel_processing_to_dataframe(receipts, expenditure):
         # Load expenditure data
         if expenditure.endswith(('.xls', '.xlsx')):
             expense_data = pd.read_excel(expenditure)
-            expense_backdata = pd.read_excel(expenditure, sheet_name=3)
+            expense_backdata = pd.read_excel(expenditure)
         elif expenditure.endswith('.csv'):
             expense_data = pd.read_csv(expenditure)
             expense_backdata = None  # CSV files do not have multiple sheets
@@ -55,6 +55,7 @@ def excel_processing_to_dataframe(receipts, expenditure):
         print(f"An error occurred while processing the files: {e}")
 
     return receipt_data, receipt_backdata, expense_data, expense_backdata
+
 
 def feature_engineering(df, as_on_date):
     """
