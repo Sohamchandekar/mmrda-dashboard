@@ -8,30 +8,13 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2>Upload Your Excel/CSV Files</h2>
+        <h2>Upload Your Budget Data File</h2>
         <form action="/" method="POST" enctype="multipart/form-data">
-            <!-- File input for Receipts Data -->
+            <!-- Single file input -->
             <div class="mb-3">
-                <label for="receipts_data" class="form-label">Receipts Data (Excel/CSV)</label>
-                <input type="file" class="form-control" id="receipts_data" name="receipts_data" required>
+                <label for="budget_data" class="form-label">Budget Data (Excel/CSV)</label>
+                <input type="file" class="form-control" id="budget_data" name="budget_data" required>
             </div>
-            <!-- File input for Expenditure Data -->
-            <div class="mb-3">
-                <label for="expenditure_data" class="form-label">Expenditure Data (Excel/CSV)</label>
-                <input type="file" class="form-control" id="expenditure_data" name="expenditure_data" required>
-            </div>
-            <!-- File input for Project Breakdown -->
-            <div class="mb-3">
-                <label for="project_breakdown" class="form-label">Project Breakdown (Excel/CSV)</label>
-                <input type="file" class="form-control" id="project_breakdown" name="project_breakdown" required>
-            </div>
-
-            <!-- File input for Loan Breakdown -->
-            <div class="mb-3">
-                <label for="loan_breakdown" class="form-label">Loan Breakdown (Excel/CSV)</label>
-                <input type="file" class="form-control" id="loan_breakdown" name="loan_breakdown" required>
-            </div>
-
             <button type="submit" class="btn btn-primary">Upload</button>
         </form>
     </div>
