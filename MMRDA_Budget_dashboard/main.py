@@ -44,55 +44,122 @@ from flask import Flask, render_template, jsonify, request
 
 
 
-# Route for the main upload page
+# # Route for the main upload page
+# @app.route("/", methods=["GET", "POST"])
+# def index():
+#     if request.method == "POST":
+#         receipts_file = request.files['receipts_data']
+#         expenditure_file = request.files['expenditure_data']
+#         project_breakdown_file = request.files['project_breakdown']
+#         loan_breakdown_file = request.files['loan_breakdown']  # Added loan breakdown file
+#
+#         if receipts_file and expenditure_file and project_breakdown_file and loan_breakdown_file:
+#             # Save the uploaded files
+#             receipts_path = os.path.join(app.config['UPLOAD_FOLDER'], receipts_file.filename)
+#             expenditure_path = os.path.join(app.config['UPLOAD_FOLDER'], expenditure_file.filename)
+#             project_breakdown_path = os.path.join(app.config['UPLOAD_FOLDER'], "project_breakdown.xlsx")
+#             loan_breakdown_path = os.path.join(app.config['UPLOAD_FOLDER'], "loan_breakdown.xlsx")  # Loan breakdown path
+#
+#             receipts_file.save(receipts_path)
+#             expenditure_file.save(expenditure_path)
+#             project_breakdown_file.save(project_breakdown_path)
+#             loan_breakdown_file.save(loan_breakdown_path)  # Save loan breakdown file
+#
+#             # Process the receipts and expenditure files
+#             global receipt_data, receipt_backdata, expense_data, expense_backdata
+#             global insight_dataframe, key_insights
+#             (receipt_data, receipt_backdata, expense_data, expense_backdata) = excel_processing_to_dataframe(
+#                 receipts_path, expenditure_path
+#             )
+#             receipt_backdata = feature_engineering(receipt_backdata, 'Nov 2024')
+#             expense_backdata = feature_engineering(expense_backdata, 'Nov 2024')
+#
+#             receipt_backdata = rename_date_columns(receipt_backdata)
+#             expense_backdata = rename_date_columns(expense_backdata)
+#
+#             insight_dataframe, key_insights = insights_calculation(receipt_backdata, expense_backdata)
+#
+#             # Process the project breakdown file
+#             global engineering_division, town_country_division, transport_communication_division,metro_projects_division,mono_piu_division
+#             (engineering_division,
+#              town_country_division,
+#              transport_communication_division,
+#              metro_projects_division,
+#              mono_piu_division) = read_excel_and_process(project_breakdown_path)
+#
+#             global adb_ndb_dict
+#             adb_ndb_dict = ADB_NDB_loanstructure_processing(loan_breakdown_path)
+#             print(adb_ndb_dict)
+#
+#             # Redirect to the home page after processing
+#             return redirect(url_for('home'))
+#
+#     return render_template("index.html")
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        receipts_file = request.files['receipts_data']
-        expenditure_file = request.files['expenditure_data']
-        project_breakdown_file = request.files['project_breakdown']
-        loan_breakdown_file = request.files['loan_breakdown']  # Added loan breakdown file
+        # Single file input for the consolidated Excel file
+        budget_file = request.files['budget_data']
 
-        if receipts_file and expenditure_file and project_breakdown_file and loan_breakdown_file:
-            # Save the uploaded files
-            receipts_path = os.path.join(app.config['UPLOAD_FOLDER'], receipts_file.filename)
-            expenditure_path = os.path.join(app.config['UPLOAD_FOLDER'], expenditure_file.filename)
-            project_breakdown_path = os.path.join(app.config['UPLOAD_FOLDER'], "project_breakdown.xlsx")
-            loan_breakdown_path = os.path.join(app.config['UPLOAD_FOLDER'], "loan_breakdown.xlsx")  # Loan breakdown path
+        if budget_file:
+            # Save the uploaded file as "budget_data.xlsx"
+            budget_path = os.path.join(app.config['UPLOAD_FOLDER'], "budget_data.xlsx")
+            budget_file.save(budget_path)
 
-            receipts_file.save(receipts_path)
-            expenditure_file.save(expenditure_path)
-            project_breakdown_file.save(project_breakdown_path)
-            loan_breakdown_file.save(loan_breakdown_path)  # Save loan breakdown file
+            # Step 1: Load the Excel file
+            with pd.ExcelFile(budget_path) as xls:
+                # Step 1: Extract and save the "Receipts" sheet as revenue.xlsx
+                if "Receipts" in xls.sheet_names:
+                    receipts_data = pd.read_excel(xls, sheet_name="Receipts")
+                    revenue_path = os.path.join(app.config['UPLOAD_FOLDER'], "revenue.xlsx")
+                    receipts_data.to_excel(revenue_path, index=False)
 
-            # Process the receipts and expenditure files
+                # Step 2: Extract and save the "Expense" sheet as expenditure.xlsx
+                if "Expense" in xls.sheet_names:
+                    expenditure_data = pd.read_excel(xls, sheet_name="Expense")
+                    expenditure_path = os.path.join(app.config['UPLOAD_FOLDER'], "expenditure.xlsx")
+                    expenditure_data.to_excel(expenditure_path, index=False)
+
+                # Step 3: Extract specified project sheets and save as project_breakdown.xlsx
+                project_sheets = ["engineering", "town_planning", "transport_communication", "metro_projects", "mono_piu"]
+                project_breakdown_path = os.path.join(app.config['UPLOAD_FOLDER'], "project_breakdown.xlsx")
+                with pd.ExcelWriter(project_breakdown_path, engine="openpyxl") as writer:
+                    for sheet in project_sheets:
+                        if sheet in xls.sheet_names:
+                            project_data = pd.read_excel(xls, sheet_name=sheet)
+                            project_data.to_excel(writer, sheet_name=sheet, index=False)
+
+
+                # Step 4: Extract and save the "ADB_NDB" sheet as loan_breakdown.xlsx
+                if "ADB_NDB" in xls.sheet_names:
+                    loan_breakdown_data = pd.read_excel(xls, sheet_name="ADB_NDB")
+                    loan_breakdown_path = os.path.join(app.config['UPLOAD_FOLDER'], "loan_breakdown.xlsx")
+                    loan_breakdown_data.to_excel(loan_breakdown_path, index=False)
+
+            # Step 5: Process the receipts and expenditure data for further computations
             global receipt_data, receipt_backdata, expense_data, expense_backdata
             global insight_dataframe, key_insights
             (receipt_data, receipt_backdata, expense_data, expense_backdata) = excel_processing_to_dataframe(
-                receipts_path, expenditure_path
+                revenue_path, expenditure_path
             )
-            receipt_backdata = feature_engineering(receipt_backdata, 'Sept 2024')
-            expense_backdata = feature_engineering(expense_backdata, 'Sept 2024')
+            receipt_backdata = feature_engineering(receipt_backdata, 'Nov 2024')
+            expense_backdata = feature_engineering(expense_backdata, 'Nov 2024')
 
             receipt_backdata = rename_date_columns(receipt_backdata)
             expense_backdata = rename_date_columns(expense_backdata)
 
             insight_dataframe, key_insights = insights_calculation(receipt_backdata, expense_backdata)
 
-            # Process the project breakdown file
-            global engineering_division, town_country_division, transport_communication_division,metro_projects_division,mono_piu_division
-            (engineering_division,
-             town_country_division,
-             transport_communication_division,
-             metro_projects_division,
+            # Process the project breakdown data
+            global engineering_division, town_country_division, transport_communication_division,metro_projects_division, mono_piu_division
+            (engineering_division,town_country_division,transport_communication_division,metro_projects_division,
              mono_piu_division) = read_excel_and_process(project_breakdown_path)
 
+            # Process loan breakdown data
             global adb_ndb_dict
             adb_ndb_dict = ADB_NDB_loanstructure_processing(loan_breakdown_path)
             print(adb_ndb_dict)
-
-
-
 
             # Redirect to the home page after processing
             return redirect(url_for('home'))
@@ -140,7 +207,7 @@ def level1():
     proportion_revenue_card_html = proportion_revenue_card(receipt_backdata)
     proportion_expense_card_html = proportion_expense_card(expense_backdata)
 
-    utility_card_html = average_revenue_per_expense_card(insight_dataframe, as_on_month = 'Sep 2024')
+    utility_card_html = average_revenue_per_expense_card(insight_dataframe, as_on_month = 'Nov 2024')
     position_card_html = position_card(receipt_backdata,expense_backdata)
     cash_inhand_card_html = cash_inhand_card(receipt_backdata,expense_backdata, previous_closing= 500)
 
@@ -177,35 +244,35 @@ def level2():
 def engineering():
     if engineering_division is not None:
         # Generate the table for the Engineering Division
-        table_html = generate_table_from_dataframe(engineering_division, 'Oct 2024')
+        table_html = generate_table_from_dataframe(engineering_division, 'Nov 2024')
         return render_template("dashboard2.html", table_html=table_html)
     return jsonify({"error": "Engineering division data not found"}), 404
 
 @app.route('/town')
 def town():
     if town_country_division is not None:
-        table_html = generate_table_from_dataframe(town_country_division,cutoff_month='Oct 2024')
+        table_html = generate_table_from_dataframe(town_country_division,cutoff_month='Nov 2024')
         return render_template("dashboard2.html", table_html=table_html)
     return jsonify({"error": "Town & Country Planning data not found"}), 404
 
 @app.route('/transportCommunication')
 def transportCommunication():
     if transport_communication_division is not None:
-        table_html = generate_table_from_dataframe(transport_communication_division,cutoff_month='Oct 2024')
+        table_html = generate_table_from_dataframe(transport_communication_division,cutoff_month='Nov 2024')
         return render_template("dashboard2.html", table_html=table_html)
     return jsonify({"error": "Town & Country Planning data not found"}), 404
 
 @app.route('/metroProjects')
 def metroProjects():
     if metro_projects_division is not None:
-        table_html = generate_table_from_dataframe(metro_projects_division,cutoff_month='Oct 2024')
+        table_html = generate_table_from_dataframe(metro_projects_division,cutoff_month='Nov 2024')
         return render_template("dashboard2.html", table_html=table_html)
     return jsonify({"error": "Town & Country Planning data not found"}), 404
 
 @app.route('/monoPiu')
 def monoPiu():
     if mono_piu_division is not None:
-        table_html = generate_table_from_dataframe(mono_piu_division,cutoff_month='Oct 2024')
+        table_html = generate_table_from_dataframe(mono_piu_division,cutoff_month='Nov 2024')
         return render_template("dashboard2.html", table_html=table_html)
     return jsonify({"error": "mono_piu_division data not found"}), 404
 
@@ -233,4 +300,5 @@ def adb_ndb_dashboard():
                            loan_cards_html=loan_cards_html,
                            repayment_chart_html = repayment_chart_html)
 
-
+if __name__ == "__main__":
+    app.run(debug=True)
