@@ -9,17 +9,19 @@ body {
     background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+/* Header section */
 header {
-    display: flex; /* Use flexbox for layout */
+    width: 100%;
+    display: flex;
     justify-content: space-between; /* Space between logo and tab buttons */
     align-items: center; /* Center items vertically */
     background: #7F7FD5;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
     padding: 5px 10px; /* Add some horizontal padding */
 }
 
+/* Logo styling */
 #company-logo img {
     max-width: 150px; /* Adjust as needed */
 }
@@ -30,22 +32,26 @@ header {
 
 .tab-button {
     margin: 0 10px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 11px 12px; /* Slightly larger padding for a premium feel */
+    background: linear-gradient(to right, #F0F0D7, #e6e9f0); /* Subtle gradient */
+    color: #333; /* Neutral text color for a professional look */
+    font-weight: 550; /* Slightly bolder font for emphasis */
+    font-size: 14px; /* Slightly larger font for better readability */
+    border: 0.0px solid #d0d7e5; /* Thin border to define button edges */
+    border-radius: 8px; /* Modern rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+    cursor: pointer; /* Pointer cursor for interactivity */
 }
 
+/* Hover Effects */
 .tab-button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(to right, #e6e9f0, #d0d7e5); /* Gradient shift for hover */
+    color: #007bff; /* Slightly brighter text color on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow for interactivity */
+    transform: scale(1.05); /* Slight scale-up effect */
 }
 
-h2 {
-    text-align: center;
-    margin-top: 20px;
-}
 
 /********************************************************************************************************/
 
@@ -237,3 +243,5 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+

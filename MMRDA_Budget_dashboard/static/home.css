@@ -44,6 +44,7 @@ body::before {
 }
 
 
+
 /* Header section */
 header {
     width: 100%;
@@ -67,38 +68,80 @@ header {
 
 .tab-button {
     margin: 0 10px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 11px 12px; /* Slightly larger padding for a premium feel */
+    background: linear-gradient(to right, #F0F0D7, #e6e9f0); /* Subtle gradient */
+    color: #333; /* Neutral text color for a professional look */
+    font-weight: 550; /* Slightly bolder font for emphasis */
+    font-size: 14px; /* Slightly larger font for better readability */
+    border: 0.0px solid #d0d7e5; /* Thin border to define button edges */
+    border-radius: 8px; /* Modern rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+    cursor: pointer; /* Pointer cursor for interactivity */
 }
 
+/* Hover Effects */
 .tab-button:hover {
-    background-color: #0056b3;
+    background: linear-gradient(to right, #e6e9f0, #d0d7e5); /* Gradient shift for hover */
+    color: #007bff; /* Slightly brighter text color on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow for interactivity */
+    transform: scale(1.05); /* Slight scale-up effect */
 }
 
-/* Content placeholder styling */
 .content-placeholder {
-    margin-top: 50px;
+    display: flex; /* Flexbox for side-by-side layout */
+    justify-content: space-between; /* Add space between the child divs */
+    align-items: center; /* Vertically center-align the content */
+    width: 95%; /* 80% of the screen width */
+    height: 99%; /* 80% of the screen height */
+    margin: auto; /* Center the container horizontally and vertically */
+    padding: 5px; /* Add some padding inside the container */
+
+}
+
+/* Heading Holder Styling */
+.heading-holder {
+    width: 50%; /* Take half the content-placeholder width */
+    height: 60%;
+    text-align: left; /* Align text to the left */
+    padding: 0; /* No padding for a clean look */
+}
+
+.heading-holder h2 {
+    font-size: 3.6em; /* Large font size for emphasis */
+    color: darkblue; /* Dark blue color for the heading */
+    font-weight: bold;
+    margin: 0; /* Remove default margin */
+    line-height: 1.2; /* Adjust line height for two-line heading */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflowing text for typing effect */
+    width: 0; /* Start with zero width for animation */
+    animation: typing 2s steps(40, end) forwards, blink 0.7s step-end infinite;
+}
+
+/* Typing Effect Animation */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+
+
+/* Paragraph Holder Styling */
+.paragraph-holder {
+    width: 40%;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    text-align: center;
-    z-index: 1; /* Keep this above the background image */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Center the image horizontally */
 }
 
-h1, h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
+.paragraph-holder img {
+    margin-top: 10px; /* Add space above the image */
+    max-width: 70%; /* Make the image responsive */
+    height: 70%; /* Maintain aspect ratio */
 
-p {
-    font-size: 1.1em;
-    line-height: 1.6;
 }
 
 /* Footer styling */
