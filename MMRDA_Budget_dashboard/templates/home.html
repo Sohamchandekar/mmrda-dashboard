@@ -7,27 +7,37 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 </head>
 
+
 <body>
     <header>
-        <!-- Logo Section -->
         <div id="company-logo">
             <img src="static/mmrda_logo.png" alt="Company Logo">
         </div>
-
-        <!-- Tab Navigation Buttons -->
-        <div class="tabs">
-            <button class="tab-button" onclick="location.href='/level1'">Budget Overview</button>
+        <nav class="tabs">
+            <button class="tab-button active" onclick="location.href='/level1'">Budget Overview</button>
             <button class="tab-button" onclick="location.href='/level2'">Expense Glance</button>
             <button class="tab-button" onclick="location.href='/level3'">Loan Overview</button>
-        </div>
+        </nav>
     </header>
 
     <!-- Main Content Section -->
     <div class="content-placeholder">
-        <h2>MMRDA MIS REPORT DASHBOARDING SYSTEM</h2>
-        <p>This section will display important information or highlights based on the selected level.</p>
-        <p>Navigate using the tabs above to view detailed analysis and insights.</p>
+        <div class="paragraph-holder">
+            <h3>Welcome to your interactive dashboard!</h3><br>
+            <p>Navigate using the tabs above for detailed insights.</P>
+            <img src="static/element.png" alt="Dashboard Element" class="dashboard-image">
+        </div>
+
+        <div class="heading-holder">
+            <h2 class="line-1">MMRDA</h2>
+            <h2 class="line-2">MIS REPORT</h2>
+            <h2 class="line-3">DASHBOARD SYSTEM</h2>
+        </div>
     </div>
+
+
+
+
 
     <footer id="page-footer">
         <p>Powered by Envision Next LLP © </p>

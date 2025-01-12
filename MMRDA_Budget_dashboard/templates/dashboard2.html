@@ -10,23 +10,18 @@
     <!-- Header Section -->
     <header>
         <div id="company-logo">
-            <img src="{{ url_for('static', filename='mmrda_logo.png') }}" alt="Company Logo">
+            <img src="static/mmrda_logo.png" alt="Company Logo">
         </div>
-
-<!--        <div id="dashboard-title">-->
-<!--            <h1>BUDGET DASHBOARD</h1>-->
-<!--        </div>-->
-
-        <div class="tabs">
-            <button class="tab-button" onclick="location.href='/level1'">Budget Overview</button>
+        <nav class="tabs">
+            <button class="tab-button active" onclick="location.href='/level1'">Budget Overview</button>
             <button class="tab-button" onclick="location.href='/level2'">Expense Glance</button>
             <button class="tab-button" onclick="location.href='/level3'">Loan Overview</button>
-        </div>
+        </nav>
     </header>
 
     <!-- Button Section -->
     <div class="button-container">
-        <button class="button" onclick="location.href='/engineering'">ENGINEERING DIVISION</button>
+        <button class="button" onclick="location.href='/engineering'" id="engineering-button">ENGINEERING DIVISION</button>
         <button class="button" onclick="location.href='/town'">TOWN & COUNTRY PLANNING</button>
         <button class="button" onclick="location.href='/transportCommunication'">TRANSPORT & COMMUNICATION</button>
         <button class="button" onclick="location.href='/metroProjects'">METRO PROJECTS</button>
@@ -36,10 +31,20 @@
     <!-- Main Content Section -->
     <div id="main-content">
         <!-- Insert the generated table HTML here -->
-        {{ table_html|safe }}
+        {{ table_html |safe }}
     </div>
 
     <script>
+        // Function to auto-click the ENGINEERING DIVISION button
+        window.onload = function() {
+            // Check if this page is the Expense Glance tab
+            const currentURL = window.location.pathname;
+            if (currentURL === '/level2') {
+                // Trigger the click event for ENGINEERING DIVISION button
+                document.getElementById('engineering-button').click();
+            }
+        };
+
         // Filter rows by engineer name
         function filterByEngineer(element) {
             const engineerName = element.innerText.toLowerCase();
@@ -64,10 +69,6 @@
                 rows.forEach(row => row.style.display = '');
             }
         }
-
-
     </script>
-
-
 </body>
 </html>
